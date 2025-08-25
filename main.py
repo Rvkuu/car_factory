@@ -1,27 +1,28 @@
 from factory import CarFactory
 from management import CarManager
+from rules import SportsCarRule, SUVRule, SedanRule
 
 if __name__ == "__main__":
     factory = CarFactory()
     manager = CarManager()
 
-    # Create different cars
-    sedan = factory.create_car("Sedan", "Hybrid")
-    suv = factory.create_car("SUV", "Diesel")
-    sports = factory.create_car("SportsCar", "Gasoline")
+    # Setup rules chain
+    rules = SportsCarRule(SUVRule(SedanRule()))
 
-    # Add to manager (Singleton)
-    manager.add_car(sedan)
-    manager.add_car(suv)
-    manager.add_car(sports)
+    # Example car orders
+    orders = [
+        ("Sedan", "Hybrid"),
+        ("SUV", "Diesel"),
+        ("SportsCar", "Gasoline"),
+        ("SportsCar", "Diesel"),   # should fail
+        ("SUV", "Electric"),       # should fail
+    ]
 
-    print("\n--- Production List ---")
+    for car_type, engine_type in orders:
+        print(f"\nOrdering: {car_type} with {engine_type} engine")
+        if rules.handle(car_type, engine_type):
+            car = factory.create_car(car_type, engine_type)
+            manager.add_car(car)
+
+    print("\n--- Final Production List ---")
     manager.list_cars()
-
-    print("\n--- Car Functions ---")
-    sedan.turn_on_engine()
-    sedan.play_music()
-    sedan.shift_gear(1)
-    sedan.accelerate()
-    sedan.brake()
-    sedan.turn_off_engine()
