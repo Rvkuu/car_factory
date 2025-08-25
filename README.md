@@ -51,6 +51,7 @@ The second commit allows for the extension of the Car factory system with Rules 
 >   Sedan can have diesel, gasoline, hybrid, electric.
 >   SUV can have diesel, gasoline, hybrid.
 >   Sports car cannot have diesel or electric (only gasoline or hybrid)
+
 The design patterns present in the second commit includes:
 1.  Factory Method
 2.  Singleton
@@ -62,4 +63,21 @@ car_factory/
     |- factory.py       # CarFactory (Factory Method)
     |- management.py    # CarManager (Singleton)
     |- rules.py         # Rule validation using CoR
+    |- main.py          # Example usage
+
+# third commit
+In the third commit, the decorator pattern is added to enable the extension of the car class with custom attributes/packages like sports package, premuium audio, safety upgrade etc without modifying the base Car class.
+The design patterns present in the third commit includes:
+1.  Factory Method
+2.  Singleton
+3.  Chain of responsibility
+4.  Decorator - Adds customization features to cars (packages)
+
+# Updated project structure
+car_factory/
+    |- car.py           # Car base class and implementation
+    |- factory.py       # CarFactory (Factory Method)
+    |- management.py    # CarManager (Singleton)
+    |- rules.py         # Rule validation using (CoR)
+    |- decorators.py    # Customization
     |- main.py          # Example usage
