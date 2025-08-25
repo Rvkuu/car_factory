@@ -35,13 +35,31 @@ The famous "Gang of Four" (GoF) book groups them into three(3) main categories:
 
 # Project Structure
 car_factory/
-|- car.py           # Car base class and implementation
-|- factory.py       # CarFactory (Factory Method)
-|- management.py    # CarManager (Singleton)
-|- main.py          # Example usage
+    |- car.py           # Car base class and implementation
+    |- factory.py       # CarFactory (Factory Method)
+    |- management.py    # CarManager (Singleton)
+    |- main.py          # Example usage
 
 # first commit
 The first commit makes use of the Factory Method (Car types) and the Singleton (Production Management) because they are the most fundamental design pattern to car production.
 1. Factory Method - for creating different car types (Sedan, SUV, SportsCar).
 2. Singleton - CarManager ensures a single point of control for production and state management.
 3. Basic Car Functions - Clear separation of components (engine, music, gear etc).
+
+# second commit
+The second commit allows for the extension of the Car factory system with Rules Enforcement using the Chain of Responsibility (CoR) design pattern. This allows us to validate car configurations before they are added to production.
+>   Sedan can have diesel, gasoline, hybrid, electric.
+>   SUV can have diesel, gasoline, hybrid.
+>   Sports car cannot have diesel or electric (only gasoline or hybrid)
+The design patterns present in the second commit includes:
+1.  Factory Method
+2.  Singleton
+3.  Chain of responsibility - Validates rules before production. (Extendable, pluggable rules).
+
+# Updated project structure
+car_factory/
+    |- car.py           # Car base class and implementation
+    |- factory.py       # CarFactory (Factory Method)
+    |- management.py    # CarManager (Singleton)
+    |- rules.py         # Rule validation using CoR
+    |- main.py          # Example usage
